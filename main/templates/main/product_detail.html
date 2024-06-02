@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>Status: {{ "Available" if product.available else "Unavailable" }}</p>
+    <a href="{% url 'add_to_cart' product_id=product.id %}">Add to Cart</a>
+</div>
+{% endblock %}

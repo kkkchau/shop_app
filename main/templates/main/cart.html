@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+<ul>
+    {% for item in items %}
+    <li>
+        {% if item.product %}
+            {{ item.product.name }}
+        {% else %}
+            {{ item.service.name }}
+        {% endif %}
+        - Quantity: {{ item.quantity }}
+        <form method="post" action="{% url 'remove_from_cart' item.id %}">
+            {% csrf_token %}
+            <button type="submit">Remove</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'order' %}">Proceed to Order</a>
+{% endblock %}

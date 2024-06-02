@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Order{% endblock %}
+
+{% block content %}
+<h1>Order Summary</h1>
+<ul>
+    {% for item in items %}
+    <li>{{ item.product.name if item.product else item.service.name }} - Quantity: {{ item.quantity }}</li>
+    {% endfor %}
+</ul>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Place Order</button>
+</form>
+{% endblock %}

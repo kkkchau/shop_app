@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+<h2>Your Orders</h2>
+<ul>
+    {% for order in orders %}
+    <li>
+        <strong>Order {{ order.id }}</strong> - Status: {{ order.get_status_display }}
+        <ul>
+            {% for item in order.orderitem_set.all %}
+            <li>{{ item.product.name }} - Quantity: {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
